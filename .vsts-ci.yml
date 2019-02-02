@@ -1,0 +1,74 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+name: 1.0$(rev:.r)
+resources:
+- repo: self
+
+trigger:
+- master
+
+queue:  
+  name: Hosted Ubuntu 1604
+  #name: Hosted VS2017
+
+variables:
+  buildConfiguration: 'Release'
+  buildPlatform: 'x64'
+  restoreBuildProjects: '**/*.csproj'
+  buildNumberFormat: '1.0$(Rev:.r)'
+  testProjects: '**/*[Tt]ests/*.csproj'
+
+steps:
+- script: echo $(build.buildNumber)
+- script: echo $(buildNumberFormat)
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+    verbosityPack: Detailed
+
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: '$(restoreBuildProjects)'
+    arguments: '--configuration $(BuildConfiguration)'
+
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '$(Parameters.TestProjects)'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '$(restoreBuildProjects)'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: True
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: pack
+    versioningScheme: byBuildNumber
+    verbosityPack: Minimal
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet push'
+  inputs:
+    command: push
+    publishVstsFeed: 'a7c4a927-812c-40b8-a66e-b9b8b7014947'

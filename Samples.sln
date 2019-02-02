@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{63161E49-16DA-4D1C-9767-D7E1E54FB8F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Cli", "src\Samples.Cli\Samples.Cli.csproj", "{ED08419B-78F9-441F-9F1D-A3B395B801A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{91E93834-052E-43F6-AACB-7264D3BCE298}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.vsts-ci.yml = .vsts-ci.yml
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED08419B-78F9-441F-9F1D-A3B395B801A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED08419B-78F9-441F-9F1D-A3B395B801A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED08419B-78F9-441F-9F1D-A3B395B801A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED08419B-78F9-441F-9F1D-A3B395B801A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ED08419B-78F9-441F-9F1D-A3B395B801A5} = {63161E49-16DA-4D1C-9767-D7E1E54FB8F8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {754693E9-008F-4E6D-8288-D498CE2E100E}
+	EndGlobalSection
+EndGlobal
