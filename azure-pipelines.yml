@@ -66,9 +66,3 @@ steps:
     command: pack
     versioningScheme: byBuildNumber
     verbosityPack: Minimal
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet push'
-  inputs:
-    command: push
-    publishVstsFeed: 'a7c4a927-812c-40b8-a66e-b9b8b7014947'
