@@ -15,7 +15,7 @@ namespace Samples.WebApi.Tests
         {
             var server = new TestServer(new WebHostBuilder()
                 .UseEnvironment("Development")
-                .UseStartup<Startup>());
+                .UseStartup<TestStartup>());
 
             _client = server.CreateClient();
         }
