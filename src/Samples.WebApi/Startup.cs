@@ -34,9 +34,9 @@ namespace Samples.WebApi
         {
             services
                 .AddHealthChecks()
-                .AddAsyncCheck("My healthy check", MyCustomHealthyCheck)
-                .AddAsyncCheck("My unhealthy check", MyCustomUnhealthyCheck)
-                .AddAsyncCheck("My degraded check", MyCustomDegradedCheck);
+                .AddAsyncCheck("My healthy check", MyCustomHealthyCheck, tags: new [] {"core", "temp"})
+                .AddAsyncCheck("My unhealthy check", MyCustomUnhealthyCheck, tags: new[] { "core" })
+                .AddAsyncCheck("My degraded check", MyCustomDegradedCheck, tags: new[] { "temp" });
 
             services
                 .AddMvc()
@@ -82,7 +82,14 @@ namespace Samples.WebApi
 
             app.UseHealthChecks("/health/core", new HealthCheckOptions()
             {
-                ResponseWriter = WriteResponse
+                ResponseWriter = WriteResponse,
+                Predicate = (check) => check.Tags.Contains("core")
+            });
+
+            app.UseHealthChecks("/health/temp", new HealthCheckOptions()
+            {
+                ResponseWriter = WriteResponse,
+                Predicate = (check) => check.Tags.Contains("temp")
             });
 
             app.UseHttpsRedirection();
