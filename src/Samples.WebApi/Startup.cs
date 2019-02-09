@@ -4,12 +4,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Ikit.OpenApi.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -41,6 +43,10 @@ namespace Samples.WebApi
             services
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services
+                .AddMyOpenApiConfiguration(
+                    @"C:\Source\klagan\sample-examples-con\src\Samples.WebApi\Samples.WebApi.xml");
         }
 
         private Task<HealthCheckResult> MyCustomHealthyCheck(CancellationToken cancellationToken)
@@ -68,7 +74,7 @@ namespace Samples.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -94,6 +100,8 @@ namespace Samples.WebApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseMyOpenApiConfiguration(provider);
         }
 
         private static Task WriteResponse(HttpContext httpContext,

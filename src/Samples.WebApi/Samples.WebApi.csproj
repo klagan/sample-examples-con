@@ -5,11 +5,22 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Source\klagan\sample-examples-con\src\Samples.WebApi\Samples.WebApi.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="Ikit.OpenApi.Extensions" Version="1.0.51" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.Extensions.HealthChecks.SqlServer" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Swashbuckle.AspNetCore.Annotations">
+      <HintPath>..\..\..\..\..\Users\klagan\.nuget\packages\swashbuckle.aspnetcore.annotations\4.0.1\lib\netstandard2.0\Swashbuckle.AspNetCore.Annotations.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
