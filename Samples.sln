@@ -12,14 +12,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{91E9
 		.gitignore = .gitignore
 		.vsts-ci.yml = .vsts-ci.yml
 		LICENSE = LICENSE
+		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.WebApi", "src\Samples.WebApi\Samples.WebApi.csproj", "{EE782C6A-E242-4C71-934D-6A08499C879F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.WebApi", "src\Samples.WebApi\Samples.WebApi.csproj", "{EE782C6A-E242-4C71-934D-6A08499C879F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{19561DFC-CB24-4114-9FE9-3041DC7F6143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.WebApi.Tests", "tests\Samples.WebApi.Tests\Samples.WebApi.Tests.csproj", "{82E73584-8799-4465-93C7-FF96BBA504A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.WebApi.Tests", "tests\Samples.WebApi.Tests\Samples.WebApi.Tests.csproj", "{82E73584-8799-4465-93C7-FF96BBA504A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.WebApi.Integration.Tests", "tests\Samples.WebApi.Integration.Tests\Samples.WebApi.Integration.Tests.csproj", "{94B301C5-0377-4A87-9DE9-00AC200F27F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +42,10 @@ Global
 		{82E73584-8799-4465-93C7-FF96BBA504A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82E73584-8799-4465-93C7-FF96BBA504A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82E73584-8799-4465-93C7-FF96BBA504A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B301C5-0377-4A87-9DE9-00AC200F27F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B301C5-0377-4A87-9DE9-00AC200F27F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B301C5-0377-4A87-9DE9-00AC200F27F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B301C5-0377-4A87-9DE9-00AC200F27F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +54,7 @@ Global
 		{ED08419B-78F9-441F-9F1D-A3B395B801A5} = {63161E49-16DA-4D1C-9767-D7E1E54FB8F8}
 		{EE782C6A-E242-4C71-934D-6A08499C879F} = {63161E49-16DA-4D1C-9767-D7E1E54FB8F8}
 		{82E73584-8799-4465-93C7-FF96BBA504A4} = {19561DFC-CB24-4114-9FE9-3041DC7F6143}
+		{94B301C5-0377-4A87-9DE9-00AC200F27F7} = {19561DFC-CB24-4114-9FE9-3041DC7F6143}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {754693E9-008F-4E6D-8288-D498CE2E100E}

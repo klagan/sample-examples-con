@@ -15,7 +15,7 @@ namespace Samples.WebApi.Tests
         {
             var server = new TestServer(new WebHostBuilder()
                 .UseEnvironment("Development")
-                .UseStartup<TestStartup>());
+                .UseStartup<Startup>());
 
             _client = server.CreateClient();
         }
@@ -24,7 +24,7 @@ namespace Samples.WebApi.Tests
         [InlineData("GET")]
         public async System.Threading.Tasks.Task TestGet(string method)
         {
-            var request = new HttpRequestMessage(new HttpMethod(method), "api/values/");
+            var request = new HttpRequestMessage(new HttpMethod(method), "api/v1/values/");
 
             var response = await _client.SendAsync(request);
 
@@ -36,7 +36,7 @@ namespace Samples.WebApi.Tests
         [InlineData("GET", 1)]
         public async System.Threading.Tasks.Task TestGetById(string method, int? id)
         {
-            var request = new HttpRequestMessage(new HttpMethod(method), $"api/values/{id}");
+            var request = new HttpRequestMessage(new HttpMethod(method), $"api/v1/values/{id}");
 
             var response = await _client.SendAsync(request);
 
