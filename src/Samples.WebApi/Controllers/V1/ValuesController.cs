@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Samples.WebApi.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Samples.WebApi.Controllers
@@ -12,6 +10,13 @@ namespace Samples.WebApi.Controllers
     [ApiVersion("1.0")]
     public class ValuesController : ControllerBase
     {
+        private IUrlHelper _urlHelper;
+
+        public ValuesController(IUrlHelper urlHelper)
+        {
+            _urlHelper = urlHelper;
+        }
+
         [HttpGet]
         [SwaggerOperation(Description = "Default GET verb", OperationId="kamtest", Tags=new[]{"kamTag", "testTag"})]
         public ActionResult<IEnumerable<string>> Get()
@@ -19,10 +24,19 @@ namespace Samples.WebApi.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet]
+        [Route("{id}", Name = "GetById")]
+        public ActionResult<SomeModel> Get(int id)
         {
-            return "value";
+            var result = new SomeModel() {Name = "Kam"};
+
+            var getUrl = Url.Link("GetById", new {id = id});
+
+            result.Links.Add(new LinkModel(getUrl, "self", "GET"));
+            
+            Response.Headers.Add("location", getUrl);
+            
+            return Ok(result);
         }
 
         [HttpPost]
